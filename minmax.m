@@ -1,5 +1,5 @@
 function [ output_args ] = minmax( input_args )
-%MINMAX    modify by zn
+%MINMAX    modify by qzk
 %make input_args¡Ê[-pi,pi]
 
 while(input_args>pi)
