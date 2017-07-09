@@ -7,7 +7,7 @@ Te = UR_forward_kinematics(joint_space)
 THETA = traj_p2p(Ts,Te);  %每一行代表一个theta
 
 cnt = 1;
-for i = 1:50:size(THETA,1)
+for i = 1:80:size(THETA,1)
     T = UR_forward_kinematics(THETA(i,:));
     POINTS(cnt,:) = T(1:3,4)';
     cnt = cnt+1;
