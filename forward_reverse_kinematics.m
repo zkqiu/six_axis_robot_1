@@ -1,12 +1,13 @@
 %%
 % forward kinematics qzk
 clear;clc;
-%changed by zhounan QZK ZN QZK ZN
+
 %joint_space = [0,-pi/2,-pi/2,0,pi,0];
 disp('关节空间：')
 %joint_space = [120,70,-20,10,112,-30]/180*pi
-joint_space = [120,-70,-30,10,112,-30]/180*pi
+%joint_space = [120,-70,-30,10,112,-30]/180*pi
 %joint_space = [120,50,-30,10,112,-30]/180*pi
+joint_space = [25 60 -135 62 -152 86]/180*pi;
 disp('正运动学：关节空间对应的传递矩阵：')
 T = UR_forward_kinematics(joint_space)
 disp('逆运动学：传递矩阵对应的关节空间：')
