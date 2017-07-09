@@ -1,9 +1,10 @@
-function theta = UR_reverse_kinematics( input_args )
+function THETA = UR_reverse_kinematics( input_args )
 %UR_REVERSE_KINEMATICS
 %input_args:T;  dimension:4*4
 %output_args:theta; dimension:1*6
 
-theta = zeros(8,6);
+theta = ones(8,6);
+flag = ones(1,8);
 T = input_args;
 %--------------------------------
 a1 = 0;
@@ -39,9 +40,9 @@ px = T(1,4);py = T(2,4);pz = T(3,4);
 A = px-d6*ax;
 B = d6*ay-py;
 C = d4;
-if(A^2+B^2<C^2)
-    error('message')
-end
+% if(A^2+B^2<C^2)
+%     error('message')
+% end
 theta(1:4,1) = atan2(C,sqrt(A^2+B^2-C^2))-atan2(B,A);
 theta(1:4,1)=minmax(theta(1:4,1));
 theta(5:8,1) = atan2(C,-sqrt(A^2+B^2-C^2))-atan2(B,A);
@@ -87,14 +88,10 @@ for i = 1:2:7
     A = 2*BB*DD;
     B = 2*BB*CC;
     C = CC^2+DD^2+BB^2-AA^2;
-%     atan2(B,-A)
-%     sqrt(A^2+B^2-C^2)
-%     atan2(C,sqrt(A^2+B^2-C^2))
     if(A^2+B^2<C^2)
-        theta(i,2)=0;
-        theta(i+1,2)=0;
-        disp('ÓÐÎÊÌâ')
-        continue
+        flag(i) = 0;
+        flag(i+1) = 0;
+        continue;
     end
     theta(i,2) = atan2(C,sqrt(A^2+B^2-C^2))-atan2(B,A);
     theta(i,2) = minmax(theta(i,2));
@@ -125,6 +122,14 @@ for i = 1:8
 end
 %-----------------------------------------------
 
+THETA = zeros(sum(flag),6);
+j = 1;
+for i = 1:8
+    if(flag(i)==1)
+        THETA(j,:) = theta(i,:);
+        j = j+1;
+    end
+end
 
 end
 
