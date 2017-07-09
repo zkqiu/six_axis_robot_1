@@ -1,7 +1,7 @@
 %%
-% forward kinematics
+% forward kinematics qzk
 clear;clc;
-%changed by zhounan
+%changed by zhounan QZK
 %joint_space = [0,-pi/2,-pi/2,0,pi,0];
 disp('�ؽڿռ䣺')
 %joint_space = [120,70,-20,10,112,-30]/180*pi
