@@ -18,9 +18,6 @@ px = T(1,4);py = T(2,4);pz = T(3,4);
 A = px-d6*ax;
 B = d6*ay-py;
 C = d4;
-% if(A^2+B^2<C^2)
-%     error('message')
-% end
 theta(1:4,1) = atan2(C,sqrt(A^2+B^2-C^2))-atan2(B,A);
 theta(1:4,1)=minmax(theta(1:4,1));
 theta(5:8,1) = atan2(C,-sqrt(A^2+B^2-C^2))-atan2(B,A);
