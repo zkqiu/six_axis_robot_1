@@ -14,10 +14,10 @@ L5 = Link('d', d5, 'a', a5, 'alpha', alpha5);
 L6 = Link('d', d6, 'a', a6, 'alpha', alpha6);
 robot = SerialLink([L1 L2 L3 L4 L5 L6], 'name', 'my robot');
 
-THETA = traj_p2p(Ts,Te);
+THETA = traj_p2p(Ts,Te)
 for i = 1:size(THETA,1)
     robot.plot(THETA(i,:))
-    pause(0.1);
+    pause(0.04);
 end
 
 end

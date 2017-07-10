@@ -7,7 +7,7 @@ function THETA = traj_p2p( T_start,T_end )
 %错误检验
 
 R = T_start(1:3,1:3);
-
+ref = [0 0 0 0 0 0];  %初始关节空间
 %获取始末两点
 start_point = T_start(1:3,4);
 end_point = T_end(1:3,4);
@@ -24,7 +24,8 @@ THETA = ones(column,6);
 for i = 1:column
     T = [R P(:,i);0 0 0 1];
     theta = UR_reverse_kinematics(T);
-    THETA(i,:) = theta(1,:);
+    THETA(i,:) = get_best_theta(theta,ref);
+    ref = THETA(i,:);
 end
 
 end
