@@ -2,6 +2,7 @@ function THETA = traj_p2p( T_start,T_end )
 %TRAJ_P2P
 %   从一个点到另一个点
 %   仅位置变化  姿态不变
+%   THETA行数为插值的点的个数
 
 %错误检验
 
