@@ -16,10 +16,10 @@ robot = SerialLink([L1 L2 L3 L4 L5 L6], 'name', 'my robot');
 
 THETA = traj_p2p(Ts,Te)
 %THETA = traj_p2p_jacobian(Ts,Te)
-for i = 1:size(THETA,1)
-    robot.plot(THETA(i,:))
-    pause(0.04);
-end
+% for i = 1:size(THETA,1)
+%     robot.plot(THETA(i,:))
+%     pause(0.004);
+% end
 
 end
 

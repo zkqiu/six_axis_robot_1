@@ -13,6 +13,7 @@ start_point = T_start(1:3,4);
 end_point = T_end(1:3,4);
 len = norm(start_point-end_point);
 
+
 %直线插值
 X = linspace(start_point(1),end_point(1),floor(len));
 Y = linspace(start_point(2),end_point(2),floor(len));
@@ -20,11 +21,16 @@ Z = linspace(start_point(3),end_point(3),floor(len));
 P = [X;Y;Z];  %P的每一列均为一个点
 column = size(P,2);
 THETA = ones(column,6);
+deltaX = [X(2)-X(1);Y(2)-Y(1);Z(2)-Z(1);0;0;0];
 
 for i = 1:column
     T = [R P(:,i);0 0 0 1];
     theta = UR_reverse_kinematics(T);
     THETA(i,:) = get_best_theta(theta,ref);
+    if(cond(inv(UR_Jacobian(THETA(i,:))))>500)
+        disp('deltaTheta');
+        deltaTheta = inv(UR_Jacobian(THETA(i-1,:)))*deltaX*2
+    end
     ref = THETA(i,:);
 end
 
